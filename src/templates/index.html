@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+ <head>
+ <meta charset="utf-8"> 
+<title>Indexing UI</title> 
+
+ </head>
+ <body>
+ <hr>
+ <form name="Lastupdate" action="/admin/lastupdate" method="post">
+<input type="submit" value="Check last update">
+</form>
+<hr/>
+ 
+
+ <hr>
+ <form name="Showfilter" action="/admin/showfilter" method="post">
+<input type="submit" value="View filter">
+</form>
+<hr/>
+
+ <hr>
+ <form name="Addfilter" action="/admin/addfilter" method="post">
+<input type="text" name="word" />
+<input type="submit" value="Add to filter">
+</form>
+<hr/>
+
+<hr>
+ <form name="Removefilter" action="/admin/rmfilter" method="post">
+<input type="text" name="word" />
+<input type="submit" value="Remove from filter">
+</form>
+<hr/>
+
+ </body>
+</html>
