@@ -1,29 +1,59 @@
+""" 
+document.py - A module that provides structures and functions to represent a document.
 """
-document.py
-"""
-from typing import Dict
+
+from typing import List
+
 
 class Document:
-	
-    def __init__(self, url: str):
-    	self._url: str = url
-        self._keywords: Dict[str, Set[int]] = {}
-        
+    """ 
+    A class that stores information relevant to a document: 
+    - The URL
+    - The title
+    - The keywords
+
+    This class is iterable over the keywords.
+    """
+
+    def __init__(self, *,
+                 url: str,
+                 title: List[str],
+                 keywords: List[str]):
+        self._url: str = url
+        self._title: List[str] = title
+        self._keywords: List[str] = keywords
+
     @property
-    def url():
-      	return self._url
-  	
-    def add_keyword(self, *, keyword: str, pos: int):
-    	if keyword in self._keywords:
-            self._keywords[str].add(pos)
-      	else:
-            self._keywords[str] = { pos }
-            
-    def diff(self, document: "Document") -> UpdateDocumentStrategy:
-      	"""
-        Returns an UpdateDocumentStrategy that contains the operations needed
-        to go from the first document to the second.
+    def url(self) -> str:
         """
-        removed_keywords = self._keywords.keys() - document._keywords.keys()
-        new_keywords = document._keywords.keys() - self._keywords.keys()
-		
+        :returns: The URL for this document.
+        """
+        return self._url
+
+
+class DocumentBuilder:
+    """
+    A class to build a Document by the keyword.
+    """
+
+    def __init__(self, *,
+                 url: str,
+                 title: List[str]):
+        self._url: str = url
+        self._title: List[str] = title
+        self._keywords: List[str] = []
+
+    def add(self, keyword: str) -> None:
+        """
+        :param keyword: A keyword to add to the builder internal state.
+        """
+        self._keywords += keyword
+
+    @property
+    def document(self) -> Document:
+        """
+        :returns: A new Document from the internal state.
+        """
+        return Document(url=self._url,
+                        title=self._title,
+                        keywords=self._keywords)
