@@ -1,3 +1,6 @@
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
+
 """
 document_cache.py - A module that defines classes to store documents.
 """
@@ -33,4 +36,4 @@ class DocumentCache:
         :param url: The url of the document.
         :return: The document if it exists, otherwise, return None.
         """
-        return self._index.get(url, default=None)
+        return self._index.get(url, None)

@@ -1,4 +1,7 @@
-""" 
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
+
+"""
 main.py - run using the following command:
 
 `uvicorn main:app --reload`

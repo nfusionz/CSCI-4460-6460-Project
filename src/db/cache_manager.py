@@ -1,3 +1,5 @@
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
 """
 cache_manager.py - A module that defines a class to control access to the inverse index.
 """
@@ -44,7 +46,7 @@ class ManagedLockCounter:
             self._counter += 1
             await self._sem.acquire()
 
-    async def __aexit__(self) -> None:
+    async def __aexit__(self, exc_type, exc, tb) -> None:
         async with self._counter_lock:
             self._sem.release()
             self._counter -= 1

@@ -1,4 +1,7 @@
-""" 
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
+
+"""
 document.py - A module that provides structures and functions to represent a document.
 """
 
@@ -53,7 +56,7 @@ class DocumentBuilder:
         """
         :param keyword: A keyword to add to the builder internal state.
         """
-        self._keywords += keyword
+        self._keywords.append(keyword)
 
     @property
     def document(self) -> Document:

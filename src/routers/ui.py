@@ -1,4 +1,8 @@
-""" 
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
+
+
+"""
 UI.py
 """
 from fastapi import APIRouter, Form, Request
@@ -7,8 +11,8 @@ from fastapi.templating import Jinja2Templates
 router = APIRouter(prefix="/admin")
 templates = Jinja2Templates(directory="templates")
 
-@router.get("/")
-@router.post("/")
+@router.get("")
+@router.post("")
 def hello(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 

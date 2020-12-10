@@ -1,4 +1,6 @@
-from typing import NamedTuple
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
+
 from datetime import datetime
 from dataclasses import dataclass
 

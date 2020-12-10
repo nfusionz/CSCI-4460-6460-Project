@@ -1,3 +1,7 @@
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
+
+
 from fastapi import APIRouter
 from pydantic import BaseModel
 from typing import List, Set
@@ -12,7 +16,7 @@ class Query(BaseModel):
     word: List[str]
 
 
-@router.post("/", response_model=Set[str])
+@router.post("", response_model=Set[str])
 async def query(query: Query):
     db = get_db()
     return await db.query(query.word)

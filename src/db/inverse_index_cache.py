@@ -1,3 +1,7 @@
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
+
+
 """
 inverse_index.py - A module that provides an inverse index,
 """
@@ -51,4 +55,4 @@ class InverseIndexCache:
         :return: A new Set containing all document urls associated with the keyword.
                  If there is no such keyword, return an empty set.
         """
-        pass
+        return self._index.get(keyword, set())

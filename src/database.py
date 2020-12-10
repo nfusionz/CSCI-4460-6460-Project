@@ -1,3 +1,6 @@
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
+
 """
 database.py - A module that instantiates a single CacheManager to be 
 accessed by the application.
