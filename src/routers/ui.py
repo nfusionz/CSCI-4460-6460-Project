@@ -1,16 +1,16 @@
 """ 
 UI.py
 """
-from fastapi import APIRouter, Form
+from fastapi import APIRouter, Form, Request
 from fastapi.templating import Jinja2Templates
 
-router = APIRouter()
+router = APIRouter(prefix="/admin")
 templates = Jinja2Templates(directory="templates")
 
-
 @router.get("/")
-def hello():
-    return templates.TemplateResponse("index.html", {})
+@router.post("/")
+def hello(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 
 def getthefilter():
@@ -34,8 +34,8 @@ def writetofilter(theset):
     return
 
 
-@router.post("/lastupdate/")
-def lastupdate():
+@router.post("/lastupdate")
+def lastupdate(request: Request):
     print("get updates")
     #  Todo:get the global document_update_history
     document_update_history = [
@@ -47,10 +47,10 @@ def lastupdate():
         tmp = hist[-1]
     else:
         tmp = ""
-    return templates.TemplateResponse("lastupdate.html", {"theupdate": tmp})
+    return templates.TemplateResponse("lastupdate.html", {"request": request, "theupdate": tmp})
 
-@router.post("/showfilter/")
-def showfilter():
+@router.post("/showfilter")
+def showfilter(request: Request):
     print("show filter")
     #  Todo:get the global wordfilter
     wordfilter = getthefilter()
@@ -61,10 +61,10 @@ def showfilter():
             break
         words += str(count) + ". " + filthyword + " "
         count += 1
-    return templates.TemplateResponse("showfilter.html", {"theupdate": words})
+    return templates.TemplateResponse("showfilter.html", {"request": request, "theupdate": words})
 
-@router.post("/rmfilter/")
-def removefilter(word: str = Form(...)):
+@router.post("/rmfilter")
+def removefilter(request: Request, word: str = Form(...)):
     print("remove filter")
     #  Todo:get the global wordfilter
     wordfilter = getthefilter()
@@ -74,15 +74,15 @@ def removefilter(word: str = Form(...)):
     else:
         words = word + " is never in the filter"
     writetofilter(wordfilter)
-    return templates.TemplateResponse("showfilter.html", {"theupdate": words})
+    return templates.TemplateResponse("showfilter.html", {"request": request, "theupdate": words})
 
 
 @router.post("/addfilter")
-def addfilter(word: str = Form(...)):
+def addfilter(request: Request, word: str = Form(...)):
     print("add filter")
     ##Todo:get the global wordfilter
     wordfilter = getthefilter()
     wordfilter.add(word)
     words = word + " is in the filter now."
     writetofilter(wordfilter)
-    return templates.TemplateResponse("showfilter.html", {"theupdate": words})
+    return templates.TemplateResponse("showfilter.html", {"request": request, "theupdate": words})

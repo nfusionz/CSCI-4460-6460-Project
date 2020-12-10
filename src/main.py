@@ -4,7 +4,7 @@ main.py - run using the following command:
 `uvicorn main:app --reload`
 """
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from routers import document, query, ui
 # from UI import interface as ui_interface
 
