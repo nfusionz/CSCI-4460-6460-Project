@@ -2,7 +2,7 @@
 document.py - A module that provides structures and functions to represent a document.
 """
 
-from typing import List
+from typing import List, Iterable
 
 
 class Document:
@@ -26,9 +26,15 @@ class Document:
     @property
     def url(self) -> str:
         """
-        :returns: The URL for this document.
+        :return: The URL for this document.
         """
         return self._url
+
+    def __iter__(self) -> Iterable[str]:
+        """
+        :return: An iterator over the keywords.
+        """
+        return iter(self._keywords)
 
 
 class DocumentBuilder:

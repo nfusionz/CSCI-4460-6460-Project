@@ -1,12 +1,15 @@
 """ 
 UI.py
 """
-from flask import Flask,g,render_template, request,Blueprint
+from fastapi import FastAPI, APIRouter
+from fastapi.templating import Jinja2Templates
 
-interface = Blueprint("admin", __name__)
-@interface.route("/",methods=["POST","GET"])
+router = APIRouter()
+templates = Jinja2Templates(directory="templates")
+
+
+@router.get("/")
 def hello():
-    
     wordfilter=set()    
     wordfilter.add("fuck you")    
     return render_template('index.html')

@@ -16,6 +16,7 @@ class InverseIndexCache:
     def add_url(self, *, keyword: str, url: str) -> None:
         """
         Adds a keyword-document association.
+
         :param keyword: The keyword to associate the document by.
         :param url: The url of the document.
         """
@@ -28,6 +29,7 @@ class InverseIndexCache:
     def remove_url(self, *, keyword: str, url: str) -> bool:
         """
         Removes the keyword-document association.
+
         :param keyword: The keyword of the association.
         :param url: The url of the document.
         :returns: If the operation was successful or not.
@@ -44,6 +46,7 @@ class InverseIndexCache:
     def get_documents(self, keyword: str) -> Set:
         """
         Gets all documents associated with a keyword.
+
         :param keyword: The keyword associated with the document.
         :return: A new Set containing all document urls associated with the keyword.
                  If there is no such keyword, return an empty set.
